@@ -1,4 +1,5 @@
 package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -20,7 +21,7 @@ public class TestDriveV7 extends OpMode {
     Servo servoClawRight;
     DcMotor motorRelic;
 
-    public TestDriveV7(){
+    public TestDriveV7() {
 
     }
 
@@ -36,8 +37,8 @@ public class TestDriveV7 extends OpMode {
         motorRelic = hardwareMap.dcMotor.get("relicMotor");
 
 
-        motorLeft.setDirection(DcMotor.Direction.FORWARD);
-        motorRight.setDirection(DcMotor.Direction.REVERSE);
+        motorLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorRight.setDirection(DcMotor.Direction.FORWARD);
         motorJack.setDirection(DcMotor.Direction.REVERSE);
         motorJewel.setDirection(DcMotor.Direction.REVERSE);
         servoClawLeft.setDirection(Servo.Direction.FORWARD);
@@ -50,16 +51,16 @@ public class TestDriveV7 extends OpMode {
 
         float leftY = gamepad1.left_stick_y;
         float rightY = gamepad1.right_stick_y;
-        float DPUP = gamepad1.dpad_up  ? 1.0f : 0.0f;
-        float DPWN = gamepad1.dpad_down  ? 1.0f : 0.0f;
-        float UY = gamepad2.y  ? 1.0f : 0.0f;
-        float DA = gamepad2.a  ? 1.0f : 0.0f;
+        float DPUP = gamepad1.dpad_up ? 1.0f : 0.0f;
+        float DPWN = gamepad1.dpad_down ? 1.0f : 0.0f;
+        float UY = gamepad2.y ? 1.0f : 0.0f;
+        float DA = gamepad2.a ? 1.0f : 0.0f;
         float SCI = gamepad2.left_trigger;
         float SCO = gamepad2.right_trigger;
         float lefty = gamepad2.left_stick_y;
         float righty = gamepad2.right_stick_y;
-        float DPOT = gamepad2.dpad_up  ? 1.0f : 0.0f;
-        float DPIN = gamepad2.dpad_down  ? 1.0f : 0.0f;
+        float DPOT = gamepad2.dpad_up ? 1.0f : 0.0f;
+        float DPIN = gamepad2.dpad_down ? 1.0f : 0.0f;
 
         motorLeft.setPower(leftY);
         motorRight.setPower(rightY);
@@ -68,46 +69,37 @@ public class TestDriveV7 extends OpMode {
 
         if (gamepad2.dpad_up) {
             motorRelic.setPower(DPOT);
-        }
-        else if (gamepad2.dpad_down) {
+        } else if (gamepad2.dpad_down) {
             motorRelic.setPower(-DPIN);
-        }
-        else {
+        } else {
             motorRelic.setPower(0.0);
         }
 
 
-        if (gamepad2.left_trigger>0) {
+        if (gamepad2.left_trigger > 0) {
             servoClawLeft.setPosition(SCI);
             servoClawRight.setPosition(SCI);
-        }
-
-        else if (gamepad2.right_trigger>0) {
+        } else if (gamepad2.right_trigger > 0) {
             servoClawLeft.setPosition(-SCO);
             servoClawRight.setPosition(-SCO);
-        }
-        else {
+        } else {
             servoClawLeft.setPosition(0.0);
             servoClawRight.setPosition(0.0);
         }
 
         if (gamepad1.dpad_up) {
             motorJack.setPower(-DPUP);
-        }
-        else if (gamepad1.dpad_down) {
+        } else if (gamepad1.dpad_down) {
             motorJack.setPower(DPWN);
-        }
-        else {
+        } else {
             motorJack.setPower(0.0);
         }
 
         if (gamepad2.y) {
             motorArm.setPower(UY);
-        }
-        else if (gamepad2.a) {
+        } else if (gamepad2.a) {
             motorArm.setPower(DA);
-        }
-        else {
+        } else {
             motorArm.setPower(0.0);
         }
 
